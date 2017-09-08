@@ -1,0 +1,26 @@
+###############################################################################################
+###############################################################################################
+#Obs1: EPR > Efetivos pós reuni
+#Obs2: CR2016 > 2016 com reposição
+#Obs3: SR2016 > 2016 sem reposição
+#Obs4: CR1516 > 2015 + 2016_com reposição
+#Obs5: SR1516 > 2015 + 2016_sem reposição
+#Obs6: A2015 > apenas o resultado de 2015
+
+Obs: Neste caso, a ordem não altera o resultado
+Input=("
+  Grupo	    Reprovados	Aprovados
+  'EPR'	    694	        366
+  'CR2016'	    49	                   61
+  'SR2016'	    66	                  44
+  'A2015'	    303	        144
+  'CR1516'	    352	        205
+  'SR1516'	    369	        188
+")
+library(DescTools)
+
+Matriz=as.matrix(read.table(textConnection(Input),header = T, row.names = 1))
+library(RVAideMemoire)
+G.test(Matriz)
+
+pairwise.G.test(Matriz,p.method = 'none')

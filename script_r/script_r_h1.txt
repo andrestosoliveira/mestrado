@@ -1,0 +1,23 @@
+###############################################################################################
+###############################################################################################
+#H0: A proporção de alunos aprovados antes do reuni é a mesma depois do reuni
+#H1: A proporção de alunos aprovados antes do reuni não é a mesma depois do reuni
+
+Input=("
+       Grupo          Reprovados      Aprovados
+       'AR'            886             1422
+       'APR'           2804            2901
+       ")
+library(DescTools)
+
+
+Matriz=as.matrix(read.table(textConnection(Input),
+                            header = T,
+                            row.names = 1))
+library(RVAideMemoire)
+G.test(Matriz)
+
+#Obs1: AR > Percentual de aprovados antes do reuni
+#Obs2: APR > Percentual de aprovados “depois do reuni”
+#Obs3: Esta análise levou em consideração apenas as turmas presenciais!!!!    
+
