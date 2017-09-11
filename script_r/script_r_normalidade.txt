@@ -1,0 +1,12 @@
+dados<-read.table("//dados.txt",h=T)
+modeloTeste = aov(dados$media ~ dados$situacao)
+summary(modeloTeste)
+
+
+# Verificando as pressuposições do modelo
+# Obtenção do resíduo
+res_stud = rstudent(modeloTeste)
+
+## (2) Teste de Shapiro para verificar Normalidade dos resíduos
+amostra<-res_stud
+shapiro.test(amostra)
